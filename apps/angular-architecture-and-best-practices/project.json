@@ -1,0 +1,103 @@
+{
+  "name": "angular-architecture-and-best-practices",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "nx-angular",
+  "sourceRoot": "apps/angular-architecture-and-best-practices/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/angular-architecture-and-best-practices",
+        "index": "apps/angular-architecture-and-best-practices/src/index.html",
+        "main": "apps/angular-architecture-and-best-practices/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/angular-architecture-and-best-practices/tsconfig.app.json",
+        "assets": [
+          "apps/angular-architecture-and-best-practices/src/favicon.ico",
+          "apps/angular-architecture-and-best-practices/src/assets"
+        ],
+        "styles": [
+          "apps/angular-architecture-and-best-practices/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "angular-architecture-and-best-practices:build:production"
+        },
+        "development": {
+          "browserTarget": "angular-architecture-and-best-practices:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "angular-architecture-and-best-practices:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/angular-architecture-and-best-practices/**/*.ts",
+          "apps/angular-architecture-and-best-practices/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/angular-architecture-and-best-practices/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "angular-architecture-and-best-practices:build"
+      }
+    }
+  }
+}
