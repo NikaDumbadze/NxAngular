@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { PlanningModule } from './planning/planning.module';
+import { RouterModule } from '@angular/router';
+import { routes } from './routes';
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
-  imports: [BrowserModule],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    PlanningModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

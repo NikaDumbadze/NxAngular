@@ -1,1 +1,22 @@
-<nx-angular-nx-welcome></nx-angular-nx-welcome>
+<nav class="navbar navbar-default">
+  <div class="navbar-header">
+    <a href="#/">
+      <img src="assets/angular.png" class="logo" title="Logo" />
+    </a>
+  </div>
+  <ul class="nav navbar-nav nav-pills">
+    <li routerLinkActive="active">
+      <a routerLink="/planning">Planning</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/features">Features</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/structuring-components">Components</a>
+    </li>
+  </ul>
+</nav>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
