@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
+import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,8 +18,9 @@ import { StructuringComponentsModule } from './structuring-components/structurin
     RouterModule.forRoot(routes),
     PlanningModule,
     StructuringComponentsModule,
+    PipesFunctionsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
