@@ -8,6 +8,7 @@ import { routes } from './routes';
 import { HttpClientModule } from '@angular/common/http';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
+import { CommunicationModule } from './communication/communication.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
     PlanningModule,
     StructuringComponentsModule,
     PipesFunctionsModule,
+    CommunicationModule
   ],
   providers: [],
   bootstrap: [AppComponent],
