@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StructuringComponentsModule } from './structuring-components/structuring-components.module';
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { CommunicationModule } from './communication/communication.module';
+import { ViewModelModule } from './view-model/view-model.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,8 @@ import { CommunicationModule } from './communication/communication.module';
     PlanningModule,
     StructuringComponentsModule,
     PipesFunctionsModule,
-    CommunicationModule
+    CommunicationModule,
+    ViewModelModule
   ],
   providers: [],
   bootstrap: [AppComponent],
