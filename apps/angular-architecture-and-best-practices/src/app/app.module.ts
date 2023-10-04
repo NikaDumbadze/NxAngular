@@ -10,6 +10,7 @@ import { StructuringComponentsModule } from './structuring-components/structurin
 import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
+import { SubjectsModule } from './subjects/subjects.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { ViewModelModule } from './view-model/view-model.module';
     StructuringComponentsModule,
     PipesFunctionsModule,
     CommunicationModule,
-    ViewModelModule
+    ViewModelModule,
+    SubjectsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
