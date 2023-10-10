@@ -38,6 +38,10 @@
   </ul>
 </nav>
 
+<strong *ngIf="customer" class="pull-right" style="padding-right: 10px;">
+  Current Customer: {{ customer.name }}
+</strong>
+
 <main>
   <router-outlet></router-outlet>
 </main>
