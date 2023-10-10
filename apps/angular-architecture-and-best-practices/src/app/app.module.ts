@@ -13,6 +13,7 @@ import { ViewModelModule } from './view-model/view-model.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { InheritanceModule } from './inheritance/inheritance.module';
 import { HttpClientRxJSModule } from './http-client-rxjs/http-client-rxjs.module';
+import { SignalsModule } from './signals/signals.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,8 @@ import { HttpClientRxJSModule } from './http-client-rxjs/http-client-rxjs.module
     ViewModelModule,
     SubjectsModule,
     InheritanceModule,
-    HttpClientRxJSModule
+    HttpClientRxJSModule,
+    SignalsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
