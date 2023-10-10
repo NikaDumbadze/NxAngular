@@ -12,6 +12,7 @@ import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
 import { SubjectsModule } from './subjects/subjects.module';
 import { InheritanceModule } from './inheritance/inheritance.module';
+import { HttpClientRxJSModule } from './http-client-rxjs/http-client-rxjs.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { InheritanceModule } from './inheritance/inheritance.module';
     CommunicationModule,
     ViewModelModule,
     SubjectsModule,
-    InheritanceModule
+    InheritanceModule,
+    HttpClientRxJSModule
   ],
   providers: [],
   bootstrap: [AppComponent],

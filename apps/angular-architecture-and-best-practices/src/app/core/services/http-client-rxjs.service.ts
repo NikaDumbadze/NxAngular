@@ -1,0 +1,145 @@
+import { Injectable } from "@angular/core";
+import { HttpClient } from '@angular/common/http';
+import { forkJoin, of, from } from 'rxjs';
+import { tap, map, switchMap, catchError, mergeMap, toArray } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HttpClientRxJSService {
+
+  baseUrl = 'https://swapi.dev/api/';
+
+  constructor(
+    private readonly http: HttpClient
+  ) { }
+
+  getCharacter(name: string) {
+    if (name) {
+      return this.http.get(this.baseUrl + 'people/?search=' + name)
+        .pipe(
+          map((res: any) => res.results),
+          catchError(() => of(null))
+        )
+    }
+    return of(null);
+  }
+
+  getCharacters() {
+    return this.http.get(this.baseUrl + 'people/')
+      .pipe(
+        tap(() => {
+          console.log('Before getCharacters map');
+        }),
+        map((res: any) => {
+          return res.results;
+        }),
+        tap(() => {
+          console.log('After getCharacters map');
+        })
+      )
+  }
+
+  getPlanets() {
+    return this.http.get(this.baseUrl + 'planets/')
+      .pipe(
+        tap(() => {
+          console.log('Before getPlanets map');
+        }),
+        map((res: any) => {
+          return res.results;
+        }),
+        tap(() => {
+          console.log('After getPlanets map');
+        })
+      );
+  }
+
+  //Could simplify the above functions with the one
+  getResource(url: string) {
+    return this.http.get(url)
+      .pipe(
+        tap(() => {
+          console.log('Before map');
+        }),
+        map((res: any) => {
+          return res.results;
+        }),
+        tap(() => {
+          console.log('After map');
+        })
+      );
+  }
+
+  getCharactersAndPlanets() {
+    return forkJoin({
+      characters: this.getCharacters(),
+      planets: this.getPlanets()
+    })
+      .pipe(
+        map((res: any) => {
+          return { characters: res.characters, planets: res.planets };
+        }),
+        catchError((error: any) => of(error))
+      );
+  }
+
+  getCharactersAndHomeworlds() {
+    return this.http.get(this.baseUrl + 'people/')
+      .pipe(
+        switchMap((res: any) => {
+          // convert array to observable
+          return from(res.results);
+        }),
+
+        mergeMap((person: any) => {
+          return this.http.get(person.homeworId)
+            .pipe(
+              map(hw => {
+                person.homeworId = hw;
+                return person;
+              })
+            );
+        }),
+        toArray()
+      );
+  }
+
+  getCharacterAndHomeworld() {
+    const url = this.baseUrl + 'people/1/';
+    return this.http.get(url)
+      .pipe(
+        switchMap((character: any) => {
+          return this.http.get(character.homeworId)
+            .pipe(
+              switchMap((character: any) => {
+                return this.http.get(character.homeworId)
+                  .pipe(
+                    map(hw => {
+                      character.homeworId = hw;
+                      return character;
+                    })
+                  )
+              })
+            );
+        })
+      )
+  }
+
+  getCharacterHomeworld(charUrl: string) {
+    return this.http.get(charUrl)
+      .pipe(
+        switchMap((character: any) => {
+          return this.http.get(character.homeworId);
+        })
+      );
+  }
+
+  // API requires https but returns hypermedia links that are http://. Fixing that
+  convertHttps(url: string) {
+    if (url) {
+      return url.replace('http://', 'https://');
+    }
+    return url;
+  }
+}
