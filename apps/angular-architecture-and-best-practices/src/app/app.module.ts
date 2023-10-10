@@ -11,6 +11,7 @@ import { PipesFunctionsModule } from './pipes-functions/pipes-functions.module';
 import { CommunicationModule } from './communication/communication.module';
 import { ViewModelModule } from './view-model/view-model.module';
 import { SubjectsModule } from './subjects/subjects.module';
+import { InheritanceModule } from './inheritance/inheritance.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { SubjectsModule } from './subjects/subjects.module';
     CommunicationModule,
     ViewModelModule,
     SubjectsModule,
+    InheritanceModule
   ],
   providers: [],
   bootstrap: [AppComponent],
